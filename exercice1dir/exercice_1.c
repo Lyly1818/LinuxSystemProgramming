@@ -10,9 +10,19 @@ int main()
 	const char* message = "Hello, Linux File IO";
 
 	fd = open( "hello.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if(fd == -1)
+	{
+		perror("Open");
+		return 1;
+	}
 
 	//write to file
 	write(fd, message, strlen(message));
+	if(fd == -1)
+        {
+                perror("Write");
+                return 1;
+        }
 
 
 	//close file 
