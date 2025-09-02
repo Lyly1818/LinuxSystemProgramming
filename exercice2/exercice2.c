@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 int main(){
 	
 
@@ -22,12 +22,20 @@ int main(){
 	ssize_t bytesRead;
 
 	while( ( bytesRead = read(fd, buffer, sizeof(buffer ) - 1))  > 0){
-			buffer[bytesRead] = '\0';
-			printf("%s", buffer);
+		//	buffer[bytesRead] = '\0';
+		//
+		//	printf("%s", buffer);
+			//write directly to stdout
+			if( write(STDOUT_FILENO, buffer, bytesRead) == bytesRead) {
+				perror("write");
+				close(fd);
+				exit(EXIT_FAILURE);
 
 
 			
+			
 			}
+	}
 
 
 			if ( bytesRead == -1){
