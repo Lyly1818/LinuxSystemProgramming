@@ -11,7 +11,7 @@ int main(){
 
 	int fd;
 	//open hell.txt
-	fd = open("../exercice1/hello.txt", O_RDONLY, 0664);
+	fd = open("../exercice1/hello.txt", O_RDONLY);
 	//catch error
 	if(fd == -1){
 		perror("open");
@@ -30,7 +30,7 @@ int main(){
 			}
 
 
-			if ( bytesRead = -1){
+			if ( bytesRead == -1){
 		
 				perror("read");
 			}
